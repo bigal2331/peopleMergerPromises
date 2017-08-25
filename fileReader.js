@@ -47,7 +47,10 @@ fs.readdir('.',function(err, files){
     
     Promise.all(filePromises)
     .then(function(data){
-        console.log('this is the result of getNames', getNames(data));
+        fs.writeFile('./mergedNames.txt', getNames(data),"utf-8",function(err){
+            if(err) throw err;
+            console.log("file was written")
+        })
     })
     
     
